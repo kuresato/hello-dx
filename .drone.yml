@@ -1,0 +1,24 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: build
+  image: maven:3.6-jdk-11-slim
+  commands:
+    - mvn clean compile -Dmave.test.skip=true -Dmaven.repo.local=./.m2/repository
+- name: test
+  image: maven:3.6-jdk-11-slim
+  commands:
+    - mvn test -Dmaven.repo.local=./.m2/repository
+- name: package
+  image: maven:3.6-jdk-11-slim
+  commands:
+    - mvn package -Dmave.test.skip=true -Dmaven.repo.local=./.m2/repository
+- name: build-image
+  image: plugins/docker
+  settings:
+    repo: registry:5000/kuresato/hello-dx
+    registry: registry:5000
+    insecure: true
+    dockerfile: ./Dockerfile_drone
