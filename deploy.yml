@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-dx
+  name: hello-dx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-dx
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: hello-dx
+    spec:
+      containers:
+      - image: hello-dx
+        imagePullPolicy: Never
+        name: hello-dx
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /actuator/health/liveness
+            port: 8081
+          timeoutSeconds: 3
+          initialDelaySeconds: 120
+        readinessProbe:
+          httpGet:
+            path: /actuator/health/readiness
+            port: 8081
+          timeoutSeconds: 3
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sh", "-c", "sleep 10"]
+        resources: {}
+      terminationGracePeriodSeconds: 30
+status: {}

@@ -16,4 +16,28 @@ public class HelloController {
 		return map;
 	}
 
+	@GetMapping(path = "/graceful20")
+	public Map<String, String> graceful20() throws InterruptedException {
+		Map<String, String> map = new HashMap<>();
+		map.put("message", "graceful20");
+		Thread.sleep(20_000L);
+		return map;
+	}
+
+	@GetMapping(path = "/graceful30")
+	public Map<String, String> graceful30() throws InterruptedException {
+		Map<String, String> map = new HashMap<>();
+		map.put("message", "graceful30");
+		Thread.sleep(30_000L);
+		return map;
+	}
+
+	@GetMapping(path = "/graceful40")
+	public Map<String, String> graceful40() throws InterruptedException {
+		Map<String, String> map = new HashMap<>();
+		map.put("message", "graceful40");
+		Thread.sleep(40_000L);
+		return map;
+	}
+
 }
