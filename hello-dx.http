@@ -1,0 +1,19 @@
+###
+GET http://localhost:8080/
+
+###
+GET http://localhost:8080/hello2
+Host: example.com
+
+###
+GET http://localhost:8080/graceful20
+
+###
+POST http://localhost:8080/add
+Content-Type: application/json
+Host: example.com
+
+{
+    "param1": 1
+    "param2": 2
+}

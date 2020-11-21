@@ -1,6 +1,8 @@
 package com.example.hello;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Map;
@@ -15,6 +17,12 @@ public class HelloController {
 		map.put("message", "hello-dx");
 		return map;
 	}
+
+	@GetMapping(path = "/hello2")
+    public ResponseEntity<Message> hello2() {
+        Message message = new Message("hello-dx-2");
+        return new ResponseEntity<Message>(message, HttpStatus.OK);
+    }
 
 	@GetMapping(path = "/graceful20")
 	public Map<String, String> graceful20() throws InterruptedException {
