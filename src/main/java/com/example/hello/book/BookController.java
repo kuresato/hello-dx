@@ -1,8 +1,8 @@
 package com.example.hello.book;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,23 +14,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/book")
 public class BookController {
+
+    @Autowired
+    protected BookService bookService;
+
     @GetMapping
     public List<Book> list() {
-        List<Book> list = new ArrayList<Book>();
-        list.add(new Book("1", "title1", "author1"));
-        list.add(new Book("2", "title2", "author2"));
-        return list;
+        return bookService.getBook();
     }
 
     @GetMapping("/{id}")
     public Book getBook(
         @PathVariable("id") String id) {
-            return new Book(id, "title"+id, "author"+id);
+           return bookService.getBook(id);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBook(
         @PathVariable("id") String id) {
+            bookService.deleteBook(id);
             return new ResponseEntity<String>(
                 "deleted book"+id, HttpStatus.OK);
     }
