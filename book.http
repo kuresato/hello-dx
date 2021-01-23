@@ -16,11 +16,16 @@ Accept: application/json
 
 ###
 
-GET http://{{host}}/book/1 HTTP/1.1
+GET http://{{host}}/book/600c359d25218b16582944a3 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 
 ###
-DELETE http://{{host}}/book/1 HTTP/1.1
+DELETE http://{{host}}/book/600c359d25218b16582944a3 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+###
+POST http://{{host}}/book HTTP/1.1
 Content-Type: application/json
 Accept: application/json

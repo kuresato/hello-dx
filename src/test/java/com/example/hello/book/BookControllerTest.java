@@ -12,14 +12,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class BookControllerTest {
     @Test
     public void testBook1() {
-        Book book = new Book("1","title1","author1");
+        Book book = new Book("title1","author1");
         assertThat(book, isA(Book.class));
     }
 
     @Test
     public void testBook2() {
-        Book book = new Book("1","title1","author1");
-        assertThat(book.getId(), is("1"));
+        Book book = new Book("title1","author1");
         assertThat(book.getTitle(), is("title1"));
         assertThat(book.getAuthor(), is("author1"));
     }

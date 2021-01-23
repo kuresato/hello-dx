@@ -1,6 +1,11 @@
 package com.example.hello.book;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "books")
 public class Book {
+    @Id
     private String id;
     private String title;
     private String author;
@@ -34,8 +39,7 @@ public class Book {
         return "Book [author=" + author + ", id=" + id + ", title=" + title + "]";
     }
 
-    public Book(String id, String title, String author) {
-        this.id = id;
+    public Book(String title, String author) {
         this.title = title;
         this.author = author;
     }
