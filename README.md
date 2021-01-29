@@ -37,4 +37,8 @@ db.books.insert({"title":"title2","author":"author2"})
 ## MongoDB
 
 - [Spring Boot Integration Testing with Embedded MongoDB | Baeldung](https://www.baeldung.com/spring-boot-embedded-mongodb)
-- 
+
+## Springfox
+
+- http://localhost:8080/swagger-ui/
+
