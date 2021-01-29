@@ -1,6 +1,8 @@
 package com.example.hello;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +26,24 @@ public class HelloController {
         return new ResponseEntity<Message>(message, HttpStatus.OK);
     }
 
+	@Autowired
+	private Message injectedMessage;
+
+	@GetMapping("/message")
+	public String getMessage() {
+		return injectedMessage.getMessage();
+	}
+
+
+	@Value("${app.messages.hello:hello}")
+	private String propMessage;
+
+	@GetMapping("/prop")
+	public String getPropMessage() {
+		return propMessage;
+	}
+
+	
 	@GetMapping(path = "/graceful20")
 	public Map<String, String> graceful20() throws InterruptedException {
 		Map<String, String> map = new HashMap<>();
