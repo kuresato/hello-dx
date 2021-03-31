@@ -8,7 +8,7 @@ phases:
       - chmod +x ./kubectl
       - mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
       - echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
-      - source ~/.bashrc
+      - . ~/.bashrc
   pre_build:
     commands:
       - echo Entered the pre_build phase...
@@ -17,12 +17,8 @@ phases:
   build:
     commands:
       - echo Entered the build phase...
-      #- echo Change directory to secondary source
-      #- cd $CODEBUILD_SRC_DIR
       - echo List directory
       - ls -la
-      #- echo Push the latest image to cluster
-      #- kubectl apply -f deployment.yaml
-      - kubectl get all -n default
-
+      - echo Deploy the latest image to cluster
+      - kubectl apply -f deployment.yaml
 
