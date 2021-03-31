@@ -16,8 +16,9 @@ spec:
         app: hello-dx
     spec:
       containers:
-      - image: hello-dx
-        imagePullPolicy: Never
+#      - image: hello-dx
+      - image: 579560791270.dkr.ecr.us-west-2.amazonaws.com/hello-dx
+        imagePullPolicy: Always
         name: hello-dx
         ports:
         - containerPort: 8080
