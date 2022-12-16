@@ -1,5 +1,15 @@
 # https://circleci.com/docs/2.0/language-java-maven/
 version: 2.1 # use CircleCI 2.1
+
+orbs: # adds orbs to your configuration
+  jira: circleci/jira@1.0.5 # invokes the Jira orb, making its commands accessible
+workflows:
+  build:
+    jobs:
+      - build:
+          post-steps:
+            - jira/notify # Runs the Jira's "notify" commands after a build has finished its 
+
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
     
