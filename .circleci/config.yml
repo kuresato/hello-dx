@@ -10,6 +10,7 @@ workflows:
           post-steps:
             - jira/notify # Runs the Jira's "notify" commands after a build has finished its 
 
+
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
     
